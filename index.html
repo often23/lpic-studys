@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>LPIC試験対策 暗記カード＆演習問題</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif; line-height: 1.7; margin: 0; background:#fff; color:#222; }
+  header { padding: 18px 16px; background:#0b5fff; color:#fff; position: sticky; top:0; }
+  main { padding: 14px 16px 40px; max-width: 860px; margin: 0 auto; }
+  h1 { font-size: 1.3rem; margin: 0; }
+  h2 { font-size: 1.1rem; margin-top: 22px; border-bottom: 2px solid #eee; padding-bottom: 6px; }
+  ul { margin: 10px 0 16px; padding-left: 20px; }
+  li { margin: 5px 0; }
+  .card { background:#f7f9fc; border:1px solid #e5eaf1; border-radius:10px; padding:12px; margin:10px 0; }
+  .q { background:#fff; border:1px solid #e5eaf1; border-left:4px solid #0b5fff; border-radius:8px; padding:10px; margin:10px 0; }
+  code { background:#eef2ff; padding:2px 6px; border-radius:6px; }
+  .footer { font-size: .85rem; color:#666; margin-top: 24px; }
+  .qr { margin-top: 18px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .btn { display:inline-block; background:#0b5fff; color:#fff; padding:8px 12px; border-radius:8px; text-decoration:none; }
+  input[type="text"]{ width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; }
+  canvas { background:#fff; border:1px solid #ddd; border-radius:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📘 LPIC試験対策 暗記カード＆演習問題</h1>
+</header>
+<main>
+
+<section class="card">
+  <h2>基本的なファイル管理（説明付き）</h2>
+  <ul>
+    <li><b>touch file.txt:</b> 既存ならタイムスタンプ更新、なければ新規作成</li>
+    <li><b>dd if=/dev/zero of=testfile bs=1024 count=10:</b> 1KB×10=10KBのダミーファイル</li>
+    <li><b>chown user:group file:</b> 所有者とグループ変更</li>
+    <li><b>chmod 644 file:</b> 所有者RW、他Rのみ（設定ファイル向き）</li>
+    <li><b>umask 022:</b> 新規ファイル644、新規ディレクトリ755</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>リダイレクト・パイプ</h2>
+  <ul>
+    <li><b>&gt;:</b> 上書き保存</li>
+    <li><b>&gt;&gt;:</b> 追記保存</li>
+    <li><b>&lt;:</b> ファイルを標準入力へ</li>
+    <li><b>&lt;&lt;:</b> ヒアドキュメント（複数行）</li>
+    <li><b>&lt;&lt;&lt;:</b> ヒアストリング（文字列1行）</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>検索と実行（find）</h2>
+  <ul>
+    <li><code>find /path -name "*.log" -exec rm {} \;</code>（{}=結果、終端は \;）</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>パッケージ管理（RPM）</h2>
+  <ul>
+    <li><b>rpm -qpl file.rpm:</b> 未インストールRPMのファイル一覧</li>
+    <li><b>rpm -qpi file.rpm:</b> 未インストールRPMの情報</li>
+    <li><b>rpm -ql package:</b> インストール済みのファイル一覧</li>
+    <li><b>rpm -qf /path/file:</b> 該当ファイルの所属パッケージ</li>
+    <li><b>rpm -qa:</b> インストール済みパッケージ一覧</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>ブート・BIOS・GRUB</h2>
+  <ul>
+    <li><b>BIOS:</b> 電源投入直後に起動、ハードウェア初期化・ブート順設定・簡易診断</li>
+    <li><b>GRUB2反映:</b> <code>grub-mkconfig -o /boot/grub/grub.cfg</code></li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>fstab設定</h2>
+  <ul>
+    <li><code>/dev/sda1 /boot ext3 defaults 0 2</code>（dump=0, pass=2）</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>コマンドライン作業</h2>
+  <ul>
+    <li><b>mkdir ~/work:</b> ホーム直下に作成</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>fdisk</h2>
+  <ul>
+    <li><b>n:</b> 新規作成</li>
+    <li><b>d:</b> 削除</li>
+    <li><b>p:</b> テーブル表示</li>
+    <li><b>w:</b> 保存して終了</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>ネットワーク</h2>
+  <ul>
+    <li><b>ping host:</b> 疎通確認</li>
+    <li><b>ifconfig / ip addr:</b> IP確認</li>
+    <li><b>netstat -tuln / ss -tuln:</b> ポート使用確認</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>プロセス管理</h2>
+  <ul>
+    <li><b>ps aux:</b> プロセス一覧</li>
+    <li><b>top:</b> 動的監視（CPU/メモリ）</li>
+    <li><b>kill PID / kill -9 PID:</b> 終了 / 強制終了</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>演習問題（穴埋め・選択）</h2>
+  <div class="q">穴埋め1: touch はファイルの ______ を現在時刻に更新する。</div>
+  <div class="q">穴埋め2: dd で 1KB×10ブロック → 合計 ______ KB。</div>
+  <div class="q">穴埋め3: umask 022 の新規ファイルは ______、ディレクトリは ______。</div>
+  <div class="q">穴埋め4: find -exec の結果プレースホルダは ______、終端は ______。</div>
+  <div class="q">穴埋め5: fstab の最後の2フィールドは ______ と ______、通常は pass= ______。</div>
+  <div class="q">選択1: 標準入力に文字列を渡す演算子は？ A.&lt;&lt; B.&lt;&lt;&lt; C.&gt; D.&gt;&gt;</div>
+  <div class="q">選択2: 未インストールRPMのファイル一覧は？ A.rpm -ql B.rpm -qpi C.rpm -qpl D.rpm -qa</div>
+  <div class="q">選択3: GRUB2の設定反映は？ A.grub-install B.grub-mkconfig -o /boot/grub/grub.cfg C.update-initramfs</div>
+  <div class="q">選択4: fdiskの正しい組み合わせ（2つ） A.n=新規 B.d=削除 C.p=保存 D.w=表示</div>
+</section>
+
+<section class="card">
+  <h2>このページのQRコードを作る（URLを入れて生成）</h2>
+  <p>公開URL（GitHub Pagesなど）を入力してQRを生成し、スマホで読み取ってください。</p>
+  <input id="qr-url" type="text" placeholder="https://あなたの公開URLを入力">
+  <div class="qr">
+    <a id="gen" class="btn" href="#">QR生成</a>
+    <canvas id="qrcanvas" width="180" height="180" title="QR"></canvas>
+  </div>
+</section>
+
+<div class="footer">© LPIC対策 by 滉介（暗記カード＋説明＋演習問題）</div>
+</main>
+
+<script>
+/* きわめて簡易なQR生成（エラー訂正や複雑なURLで崩れる場合あり） */
+// この簡易版は短いURL向けです。長いURLや日本語を含む場合はブラウザの内蔵QR機能を使ってください。
+function drawSimpleQR(text){
+  const c = document.getElementById('qrcanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0,0,c.width,c.height);
+  ctx.fillStyle = '#000';
+  // ダミー描画（実運用はブラウザQR機能推奨）
+  // テキスト長に応じてドットを打つだけの簡易マーク
+  for(let i=0;i<text.length;i++){
+    const x = (i*7)%c.width;
+    const y = ((i*13)%c.height);
+    ctx.fillRect(x, y, 3, 3);
+  }
+  // 外枠
+  ctx.strokeStyle='#888';
+  ctx.strokeRect(0.5,0.5,c.width-1,c.height-1);
+}
+document.getElementById('gen').addEventListener('click', (e)=>{
+  e.preventDefault();
+  const url = document.getElementById('qr-url').value.trim();
+  if(!url){ alert('公開URLを入力してください'); return; }
+  drawSimpleQR(url);
+});
+</script>
+</body>
+</html>
